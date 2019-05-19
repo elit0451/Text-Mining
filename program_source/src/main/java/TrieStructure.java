@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 public class TrieStructure {
@@ -44,15 +45,19 @@ public class TrieStructure {
 
     }
 
-    private int printWordUsage(String word, int position, TrieNode node){
-        if(position == word.length())
+    private int printWordUsage(String word, int position, TrieNode node) {
+        if (position == word.length())
             return node.getCount();
         else {
             TrieNode newNode = node.getChildNode(word.charAt(position));
-            if(newNode == null)
+            if (newNode == null)
                 throw new NoSuchElementException();
 
             return printWordUsage(word, position + 1, newNode);
         }
+    }
+
+    public ArrayList<WordCount> getWordsCount(){
+        return _rootNode.getWordsCount("");
     }
 }
